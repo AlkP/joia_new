@@ -1,0 +1,25 @@
+<%= form_for @wine_variety do |w_v| %>
+  <%= w_v.label :"Новый цвет " %>
+  <%= w_v.text_field :name %>
+  <%= w_v.submit value: "Сохранить" %>
+<% end %>
+<table>
+  <tr>
+    <th>
+      Наименование
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @wine_varieties.each do |w_vs| %>
+    <tr>
+      <td>
+        <%= w_vs.name %>
+      </td>
+      <td>
+        <a data-confirm="Вы действительно хотите удалить сорт вина?" data-method="delete" href="/wine_varieties/<%= w_vs.id %>" rel="nofollow">
+          <img src="/assets/del.png"></a>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,6 @@
+
+<%= form_for @category do |c| %>
+  <%= c.label :"Наименование:" %><%= c.text_field :name %>
+
+  <%= c.submit value: "Сохранить" %>
+<% end %>

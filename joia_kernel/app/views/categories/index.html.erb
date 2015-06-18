@@ -1,0 +1,26 @@
+<%= form_for @category do |c| %>
+  <%= c.label :"Новая категория " %>
+  <%= c.text_field :name %>
+  <%= c.submit value: "Сохранить" %>
+<% end %>
+
+<table>
+  <tr>
+    <th>
+      Наименование
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @categories.each do |cs| %>
+    <tr>
+      <td>
+        <%= cs.name %>
+      </td>
+      <td>
+        <a data-confirm="Вы действительно хотите удалить категорию?" data-method="delete" href="/categories/<%= cs.id %>" rel="nofollow">
+          <img src="/assets/del.png"></a>
+      </td>
+    </tr>
+  <% end %>
+</table>

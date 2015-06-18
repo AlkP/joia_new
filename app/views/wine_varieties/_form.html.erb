@@ -1,0 +1,7 @@
+
+<%= form_for @wine_variety do |wv| %>
+  <%= wv.label :"Наименование:" %><%= wv.text_field :name %>
+  <%= wv.label :"Наименование eng:" %><%= wv.text_field :name_eng %>
+
+  <%= wv.submit value: "Сохранить" %>
+<% end %>

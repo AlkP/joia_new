@@ -1,0 +1,30 @@
+<div>
+  <div class="manufacturers" style="float:left;width:50%;">
+
+    <%= link_to "Новый производитель", new_manufacturer_path, remote: true %>
+
+    <table>
+      <tr>
+        <th>
+          Наименование
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% @manufacturers.each do |m| %>
+        <tr>
+          <td>
+            <%= link_to m.name, manufacturer_path(m), remote: true %>
+          </td>
+          <td>
+            <a data-confirm="Вы действительно хотите удалить производителя?" data-method="delete" href="/manufacturers/<%= m.id %>" rel="nofollow">
+              <img src="/assets/del.png"></a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="manufacturer_details" style="float:left;width:50%;">
+
+  </div>
+</div>

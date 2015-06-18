@@ -1,0 +1,26 @@
+<%= form_for @color do |c| %>
+  <%= c.label :"Новый цвет " %>
+  <%= c.text_field :name %>
+  <%= c.submit value: "Сохранить" %>
+<% end %>
+
+<table>
+  <tr>
+    <th>
+      Наименование
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @colors.each do |cs| %>
+    <tr>
+      <td>
+        <%= cs.name %>
+      </td>
+      <td>
+        <a data-confirm="Вы действительно хотите удалить цвет?" data-method="delete" href="/colors/<%= cs.id %>" rel="nofollow">
+          <img src="/assets/del.png"></a>
+      </td>
+    </tr>
+  <% end %>
+</table>

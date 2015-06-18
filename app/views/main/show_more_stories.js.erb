@@ -1,0 +1,6 @@
+$('.alkp_hidden').hide();
+$(".entries").append("<%= escape_javascript render 'main/stories_index' %>");
+
+$('.entry<%= @n1 %>').on('click', function() {
+  $(this).toggleClass('is-large');
+});

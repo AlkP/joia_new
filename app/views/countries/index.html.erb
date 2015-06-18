@@ -1,0 +1,26 @@
+<div>
+  <div class="countries">
+    <%= render 'countries/countries_list' %>
+  </div>
+  <div class="regions"></div>
+</div>
+
+<!--Инициализация окна для arcticModal-->
+<div style="display: none;"><div class="editModal" id="openModal"></div></div>
+
+<script>
+  $('#nestable').nestable({
+    group: 1,
+    maxDepth: 1
+  })
+    .on('change', updateSortingCountry);
+
+  $('.editBtnCountry').click(function(){
+    var id = $(this).attr('id');
+//    alert(id);
+    $('#openModal').arcticmodal({
+      type: 'ajax',
+      url: '/countries/'+id+'/edit'
+    });
+  })
+</script>

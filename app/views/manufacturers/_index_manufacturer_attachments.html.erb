@@ -1,0 +1,31 @@
+
+<%= form_for @new_manufacturer_attachment, :html => { :multipart => true }, :remote => true do |m| %>
+  <%= m.text_field :manufacturer_id, value: @manufacturer.id, hidden: "hidden" %>
+  <%= m.label :"Фото" %>
+  <%= m.file_field :photo %>
+<% end %>
+<script>
+  $('#manufacturer_attachment_photo ').change(function(){
+    $('#new_manufacturer_attachment').submit();
+  });
+</script>
+
+<table>
+  <tr>
+    <th>
+      Photo
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @manufacturer_attachments.each do |m| %>
+    <tr>
+      <td>
+        <%= image_tag(m.photo.url) %>
+      </td>
+      <td>
+        <a data-remote="true" data-confirm="Вы действительно хотите удалить фото?" data-method="delete" href="/manufacturer_attachments/<%= m.id %>" rel="nofollow">[X]</a>
+      </td>
+    </tr>
+  <% end %>
+</table>

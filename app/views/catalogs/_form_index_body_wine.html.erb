@@ -1,0 +1,87 @@
+<% order = session[:order] %>
+<% @catalogs.each do |c| %>
+  <div class="wine<% unless order.nil? or order[c.id.to_s].nil? %> is-selected<% end %>" id="catalog_<%= c.id %>">
+    <a href='javascript:void(0)' class="wine__info"></a>
+    <a href="javascript:void(0)" class="wine__check__area"></a>
+    <a href="/order/<%= c.id %><% if controller_name == "main" %>?filterMain=true<% end %>" data-remote="true" class="wine__check__area"></a>
+    <div class="wine__check"></div>
+    <div class="wine__pic">
+      <img src="<%= c.photo_original.url %>" alt="">
+    </div>
+    <div class="wine__text">
+      <h2><a href="javascript:void(0)"><%= c.name %></a></h2>
+      <p><%= c.name_eng %> <% unless c.category_id.nil? or c.category_id == false %><%= Category.find(c.category_id).name %><% end %></p>
+    </div>
+    <div class="wine__from">
+      <% manufacturer = nil %>
+      <% unless c.manufacturer_id.nil? %><% manufacturer = Manufacturer.find(c.manufacturer_id) %><% end %>
+      <% unless manufacturer.nil? %>
+        <% unless manufacturer.country_id.nil? %><%= Country.find(manufacturer.country_id).name %><% end %><br>
+        <% if !manufacturer.region_id.nil? and Region.where('id = ?', manufacturer.region_id).count > 0 %><%= Region.find(manufacturer.region_id).name %><% end %><br>
+        «<%= manufacturer.name %>»
+      <% end %>
+    </div>
+    <div class="wine__type">
+      <div class="wine__color"><i class="color" style="background: url('<% unless c.color_id.nil? %><%= Color.find(c.color_id).logo.url %><% end %>');"></i><% unless c.color_id.nil? %><%= Color.find(c.color_id).name %><% end %><br><% unless c.sugar_id.nil? %><%= Sugar.find(c.sugar_id).name %><% end %></div>
+      <%
+         wine_varieties = ""
+         CatalogWineVariety.where('catalog_id = ?', c.id).each do |c_wv|
+           wine_varieties += WineVariety.find(c_wv.wine_variety_id).name + ", "
+         end
+      %>
+      <p class="wine_type_in"><%= wine_varieties %></p>
+    </div>
+    <div class="wine__size">
+      <p><%= c.abv %> %</p>
+      <p><%= c.volume %> л</p>
+    </div>
+    <div class="wine_inf_price">
+      <div class="wine__inf">
+        <%= c.honors %>
+      </div>
+      <div class="wine__price">
+        <%= Price.where('catalog_id = ? and type_id = ?', c.id, 1).first.price %> р.
+      </div>
+    </div>
+    <% unless c.interesting == true %>
+      <div class="wine__full__info">
+        <p><%= c.description %></p>
+      </div>
+    <% else %>
+      <div class="wine__full__info" style="display: none;">
+        <div class="best-offers__wrap">
+          <div class="best-offers__wrap__in">
+            <div class="best-offers" style="background-image: url('<%= c.interesting_background_image %>');">
+              <div class="best-offers__background__bottle">
+                <img src="<%= c.interesting_background_bottle %>" alt="">
+              </div>
+              <div class="best-offers__in">
+                <div class="best-offers__description">
+                  <h3 class="best-offers__description__rus"><%= c.interesting_description_rus %></h3>
+                  <h4 class="best-offers__description__fr"><%= c.interesting_description_fr %></h4>
+                  <p>
+                    <%= c.interesting_row1 %>
+                  </p>
+                  <p>
+                    <%= c.interesting_row2 %>
+                  </p>
+                </div>
+                <div class="best-offers__logo">
+                  <img src="<%= c.interesting_offers_logo %>" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="clr"></div>
+<div class="alkp_hidden">
+  <% unless @max %>
+    <a href="/show_wine/<%= @n1 %>/<%= @n2 %>" onclick="$('.alkp_hidden').hide();" data-remote="true" class="more">показать еще 12</a>
+    <a href="/show_wine/<%= @n1 %>/9999" onclick="$('.alkp_hidden').hide();" data-remote="true" class="more">показать все</a>
+  <% end %>
+</div>

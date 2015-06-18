@@ -1,0 +1,29 @@
+<h3><%= Country.find(@country_id).name %></h3>
+
+<%= form_for @new_region, remote: true do |f| %>
+  <%= f.label :"Новый регион " %><%= f.text_field :country_id, value: @country_id, style: "display: none;" %><%= f.label :"rus" %><%= f.text_field :name %><%= f.label :"eng" %><%= f.text_field :name_eng %><%= f.submit value: "Создать", remote: true %>
+<% end %>
+
+<div class="dd" id="nestable2">
+  <ol class="dd-list regionsList">
+    <%= render 'regions/regions_list' %>
+  </ol>
+</div>
+
+
+<script>
+  $('#nestable2').nestable({
+    group: 2,
+    maxDepth: 1
+  })
+    .on('change', updateSortingRegion);
+
+  $('.editBtnRegion').click(function(){
+    var id = $(this).attr('id');
+//    alert(id);
+    $('#openModal').arcticmodal({
+      type: 'ajax',
+      url: '/regions/'+id+'/edit'
+    });
+  })
+</script>

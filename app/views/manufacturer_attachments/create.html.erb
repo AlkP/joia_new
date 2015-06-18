@@ -1,0 +1,9 @@
+<%= link_to "Новый производитель", new_manufacturer_path, remote: true %>
+<div class="mainWindow">
+  <div class="manufacturers">
+    <%= render 'manufacturers/index' %>
+  </div>
+  <div class="manufacturer_details">
+    <%= render 'manufacturers/form' %>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+$(".catalog").html("<%= escape_javascript render 'catalogs/form_index_body' %>");
+<!--< % if @flag %>-->
+  $(".search_wide").html("<%= escape_javascript render 'layouts/wide_search' %>");
+<!--< % end %>-->
+
+
+<%= render 'layouts/initCatalog' %>
+
+ddH();
+
+showF();

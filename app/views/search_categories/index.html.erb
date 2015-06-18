@@ -1,0 +1,31 @@
+<div>
+  <div class="search_category">
+    <%= link_to "Новая поисковая категория", new_search_category_path, remote: true %>
+    <div class="dd" id="nestable">
+      <ol class="dd-list regionsList">
+        <% @search_categories.each do |c| %>
+          <li class="dd-item" data-id="<%= c.id %>">
+            <div class="dd-handle dd3-handle">Drag</div>
+            <div class="dd3-content">
+              <div class="percent-90"><%= link_to c.name, search_category_path(c), remote: true %> / <%= c.name_eng %></div>
+              <div class="percent-5"><% if c.logo.exists? %>L<% end %></div>
+              <div class="percent-5"><a data-confirm="Вы действительно хотите удалить категорию поиска?" data-method="delete" data-remote="true" href="/search_categories/<%= c.id %>" rel="nofollow">[X]</a></div>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    $('#nestable').nestable({
+      group: 1,
+      maxDepth: 1
+    })
+      .on('change', updateSortingSearchCategory);
+  </script>
+
+  <div class="search_category_details">
+
+  </div>
+</div>

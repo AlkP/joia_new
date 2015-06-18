@@ -1,0 +1,5 @@
+<%= form_for @sugar do |s| %>
+  <%= s.label :"Наименование " %><%= s.text_field :name %>
+  <%= s.label :"Наименование ENG" %><%= s.text_field :name_eng %>
+  <%= s.submit value: "Сохранить" %>
+<% end %>

@@ -1,0 +1,29 @@
+
+<div class="view">
+  <a href="javascript:void(0)"><i class="view_plitka_icon"></i></a>
+
+  <%
+
+     strFilter =  ""
+     strFilter += "?filterMain=true" if ( (controller_name == 'main') or (params[:filterMain] == "true") )
+
+  %>
+
+  <a href="/change_sort/region<%= strFilter %>" data-remote="true" class="<% if session[:sort] == 'region' %>is-active<% end %>">ПО РЕГИОНУ</a>
+  <a href="/change_sort/price<%= strFilter %>" data-remote="true" class="<% if session[:sort] == 'price' %>is-active<% end %>">ПО ЦЕНЕ</a>
+  <a href="/change_sort/search_category<%= strFilter %>" data-remote="true" class="<% if session[:sort] == 'search_category' %>is-active<% end %>">ПО ЦВЕТУ ВИНА</a>
+</div>
+<div class="filters">
+  <%= render 'catalogs/form_index_search' %>
+</div>
+<div class="clr"></div>
+
+<%= render 'catalogs/form_index_body_wine' %>
+
+<script>
+
+  initCatalog();
+
+  $('.view a').click( function() {hideF();})
+
+</script>

@@ -1,0 +1,24 @@
+// Place all the styles related to the News controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.photo-preview {
+  width: 200px;
+}
+
+.block-news {
+  height: 100px;
+  padding: 10px;
+  float: left;
+}
+
+.block-news-el {
+  padding: 10px;
+  float: left;
+  height: 100%;
+}
+
+.block-news-el a {
+  position: relative;
+  top: 50px;
+}

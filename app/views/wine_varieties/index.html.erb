@@ -1,0 +1,30 @@
+<div>
+  <div class="wine_varieties">
+
+    <%= link_to "Новый винный сорт", new_wine_variety_path, remote: true %>
+
+    <table>
+      <tr>
+        <th>
+          Наименование
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% @wine_varieties.each do |wv| %>
+        <tr>
+          <td>
+            <%= link_to wv.name, wine_variety_path(wv), remote: true %>/<%= wv.name_eng %>
+          </td>
+          <td>
+            <a data-confirm="Вы действительно хотите удалить винный сорт?" data-method="delete" href="/wine_varieties/<%= wv.id %>" rel="nofollow">
+              Удалить сорт</a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="wine_variety_details">
+
+  </div>
+</div>

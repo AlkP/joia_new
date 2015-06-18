@@ -1,0 +1,30 @@
+<div>
+  <div class="catalogs" style="float:left;width:50%;">
+
+    <%= link_to "Добавить вино", new_catalog_path, remote: true %>
+
+    <table>
+      <tr>
+        <th>
+          Наименование
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% @catalogs.each do |c| %>
+        <tr>
+          <td>
+            <%= link_to c.name, catalog_path(c), remote: true %>
+          </td>
+          <td>
+            <a data-confirm="Вы действительно хотите удалить вино?" data-method="delete" href="/catalogs/<%= c.id %>" rel="nofollow">
+              <img src="/assets/del.png"></a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="catalog" style="float:left;width:50%;">
+
+  </div>
+</div>

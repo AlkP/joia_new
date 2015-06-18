@@ -1,0 +1,8 @@
+<div class="editModal" id="openModal">
+  <div class="editModal_close arcticmodal-close">[X]</div>
+  <%= form_for @region, remote: true do |r| %>
+    <%= r.label :"rus" %><%= r.text_field :name %>
+    <%= r.label :"eng " %><%= r.text_field :name_eng %>
+    <%= r.submit value: "Сохранить" %>
+  <% end %>
+</div>

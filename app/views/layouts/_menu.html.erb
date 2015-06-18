@@ -1,0 +1,51 @@
+<div class="header">
+  <div class="header__in">
+    <% unless current_user %>
+      <a href='/' class="header__logo"><i></i></a>
+    <% end %>
+    <ul class="header__nav">
+      <% unless current_user %>
+        <li><a data-no-turbolink="true" href="/"class="<% if controller_name == 'main' %>is-active<% end %>">ГЛАВНАЯ</a></li>
+        <li><a data-no-turbolink="true" href="<%= abouts_path %>" class="<% if controller_name == 'abouts' %>is-active<% end %>">О ПРОЕКТЕ</a></li>
+        <li><a data-no-turbolink="true" href="<%= catalogs_path %>" class="<% if controller_name == 'catalogs' %>is-active<% end %>">КАТАЛОГ</a></li>
+        <li><a data-no-turbolink="true" href="<%= list_manufacturers_path %>" class="<% if controller_name == 'list_manufacturers' %>is-active<% end %>">ПРОИЗВОДИТЕЛИ</a></li>
+        <li><a data-no-turbolink="true" href="<%= contacts_path %>" class="<% if controller_name == 'contacts' %>is-active<% end %>">КОНТАКТЫ</a></li>
+      <% else %>
+        <li><a href="<%= catalogs_path %>"class="<% if controller_name == 'catalogs' %>is-active<% end %>">Каталог</a></li>
+        <li><a href="<%= stories_path %>"class="<% if controller_name == 'stories' %>is-active<% end %>">Новости</a></li>
+        <li><a href="<%= types_path %>"class="<% if controller_name == 'types' %>is-active<% end %>">Типы</a></li>
+        <li><a href="<%= sugars_path %>"class="<% if controller_name == 'sugars' %>is-active<% end %>">Сахар</a></li>
+        <li><a href="<%= countries_path %>"class="<% if controller_name == 'countries' %>is-active<% end %>">Страны / регионы</a></li>
+        <li><a href="<%= categories_path %>"class="<% if controller_name == 'categories' %>is-active<% end %>">Категории</a></li>
+        <li><a href="<%= colors_path %>"class="<% if controller_name == 'colors' %>is-active<% end %>">Цвета</a></li>
+        <li><a href="<%= search_categories_path %>"class="<% if controller_name == 'search_categories' %>is-active<% end %>">Категории поиска</a></li>
+        <li><a href="<%= wine_varieties_path %>"class="<% if controller_name == 'wine_varieties' %>is-active<% end %>">Винные сорта</a></li>
+        <li><a href="<%= manufacturers_path %>"class="<% if controller_name == 'manufacturers' %>is-active<% end %>">Производители</a></li>
+      <% end %>
+    </ul>
+    <div class="header__right">
+      <% if controller_name == "catalogs" and !(current_user and current_user.admin?) %>
+        <%= render 'layouts/order_list_button' %>
+      <% end %>
+      <% unless current_user %>
+        <div class="searchicon"></div>
+        <a href="javascript:void(0)" class="login">ВХОД</a>
+      <% else %>
+        <div class="admin__user">
+          <%= current_user.email %>
+        </div>
+        <a href="/logout" class="login">ВЫХОД</a>
+      <% end %>
+
+      <% unless current_user %>
+        <div class="lang">
+          <a href="/" class="lang__en is-active"></a>
+          <a href="/" class="lang__ru"></a>
+        </div>
+      <% end %>
+    </div>
+    <% if controller_name == 'main' %>
+      <%= render 'layouts/search' %>
+    <% end %>
+  </div>
+</div>

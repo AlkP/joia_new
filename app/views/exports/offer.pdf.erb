@@ -1,0 +1,76 @@
+<!doctype html>
+<!--[if lte IE 8]>
+<html class="lteie8"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html><!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <%= wicked_pdf_stylesheet_link_tag "/style/style.css" -%>
+</head>
+<body>
+<!-- begin header -->
+<div class="header-kp">
+  <div class="header-kp__in">
+    <div class="header-kp__logo"><i></i></div>
+    <div class="header-kp__name-container">
+      <div class="header-kp__date">01.01.2014</div>
+      <h1 class="header-kp__name" style=""><%= $name %></h1>
+    </div>
+  </div>
+</div>
+<!-- end header -->
+<!-- begin page  -->
+<div class="page-kp-block">
+<div class="page-kp-block__in">
+  <div class="page-kp-block__header">
+    <div class="page-kp-block__header__name">название</div>
+    <div class="page-kp-block__header__compound">сортовой состав</div>
+    <div class="page-kp-block__header__displacement">литраж</div>
+    <div class="page-kp-block__header__price">цена</div>
+  </div>
+  <!--begin category-->
+  <% @catalogs.each do |c| %>
+  <div class="page-kp-block__category">
+    <h2 class="page-kp-block__category__name">Всякие вина</h2>
+    <div class="page-kp-block__category__row">
+      <div class="page-kp-block__category__row__position">
+        <div class="page-kp-block__category__row__position__country">Страна</div>
+        <div class="page-kp-block__category__row__position__definition"><b>Монтефьоре. Коллекция Рондинелла</b> /Montefiore.
+          Rondinella
+        </div>
+      </div>
+      <div class="page-kp-block__category__row">
+        <div class="page-kp-block__category__row__product-description">
+          <div class="page-kp-block__category__row__product-image">
+            <%= wicked_pdf_image_tag c.avatar.url, width: 40 %>
+          </div>
+          <h3 class="page-kp-block__category__row__product-description__title"><%= c.name %></h3>
+          <p class="page-kp-block__category__row__product-description__subtitle-1"></p>
+          <p class="page-kp-block__category__row__product-description__subtitle-2"><% unless c.sugar_id.nil? %><%= Sugar.find(c.sugar_id).name %><% end %><% unless c.color_id.nil? %> <%= Color.find(c.color_id).name %><% end %></p>
+          <% unless c.manufacturer_id.nil? %>
+            <p class="page-kp-block__category__row__product-description__subtitle-3"><%= Manufacturer.find(c.manufacturer_id).name %></p>
+          <% end %>
+
+          <p class="page-kp-block__category__row__product-description__text"><%= c.description_eng %></p>
+        </div>
+        <%
+           wine_varieties = ""
+           CatalogWineVariety.where('catalog_id = ?', c.id).each do |c_wv|
+             wine_varieties += WineVariety.find(c_wv.wine_variety_id).name + ":" + c_wv.percent.to_s + '% '
+           end
+        %>
+        <p class="page-kp-block__category__row__product-compound"><%= wine_varieties %></p>
+        <p class="page-kp-block__category__row__product-displacement"><%= c.volume %></p>
+        <p class="page-kp-block__category__row__product-price"><span><%= Price.where('catalog_id = ? and type_id = ?', c.id, 1).first.price %></span>руб.</p>
+      </div>
+    </div>
+  </div>
+  <!--end category-->
+  <% end %>
+</div>
+</div>
+<!-- end page  -->
+<!--<script src="js/lib/head.js" data-headjs-load="js/init.js"></script>-->
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<%= link_to "Добавить вино", new_catalog_path, remote: true %>
+<div class="mainWindow">
+  <div class="admin_catalogs">
+    <div class="dd" id="nestable">
+      <ol class="dd-list regionsList">
+        <% @catalogs.each do |c| %>
+          <li class="dd-item" data-id="<%= c.id %>">
+            <div class="dd-handle dd3-handle">Drag</div>
+            <div class="dd3-content">
+              <div class="percent-30"><%= link_to c.name[0..25], catalog_path(c), remote: true %></div>
+              <div class="percent-30"><% unless c.manufacturer_id.nil? %><%= Manufacturer.find(c.manufacturer_id).name[0..25] %><% else %> - - - <% end %></div>
+              <div class="percent-20"><%= Price.where('catalog_id = ? and type_id = ?', c.id, 3).first.price %></div>
+              <div class="percent-5"><% unless c.hard_liquor.nil? or c.hard_liquor == false %>H-L<% else %>W<% end %></div>
+              <div class="percent-5"><% unless c.search_category_id.nil? or c.search_category_id == false %>I<% else %>O<% end %></div>
+              <div class="percent-5"><% unless c.color_id.nil? %><img alt="" style="width: 10px; height: 20px;" src="<%= Color.find(c.color_id).logo.url %>" border="0"/><% else %>-<% end %></div>
+              <div class="percent-5">
+                <a data-confirm="Вы действительно хотите удалить вино?" data-method="delete" href="/catalogs/<%= c.id %>" rel="nofollow">[X]</a></div>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+
+    <script>
+      $('#nestable').nestable({
+        group: 1,
+        maxDepth: 1
+      })
+        .on('change', updateSortingCatalog);
+    </script>
+
+  </div>
+  <div class="admin_catalog">
+  </div>
+  <div class="admin__legend">
+    * расшифровка колонок: 1. Наименование; 2. Производитель; 3. Цена; 4. W|H-L: Вино|Крепкий алкоголь; 5. I|O: присвоена|неприсвоена категория поиска; 6. Цвет
+  </div>
+</div>

@@ -1,0 +1,18 @@
+$('.editModal_close').click();
+
+$('.regionsList').html("<%= escape_javascript render 'regions/regions_list' %>");
+
+$('#nestable2').nestable({
+  group: 2,
+  maxDepth: 1
+})
+  .on('change', updateSortingRegion);
+
+$('.editBtnRegion').click(function(){
+  var id = $(this).attr('id');
+//    alert(id);
+  $('#openModal').arcticmodal({
+    type: 'ajax',
+    url: '/regions/'+id+'/edit'
+  });
+})

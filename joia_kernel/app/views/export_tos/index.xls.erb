@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Наименование</Data></Cell>
+        <Cell><Data ss:Type="String">Оригинальное наименование</Data></Cell>
+        <Cell><Data ss:Type="String">Описание</Data></Cell>
+        <Cell><Data ss:Type="String">Штрих-код</Data></Cell>
+      </Row>
+      <% @catalog.each do |c| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= c.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.name_original %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.description %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= c.barcode %></Data></Cell>
+        </Row>
+
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
+

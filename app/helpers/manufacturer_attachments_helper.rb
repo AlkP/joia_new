@@ -1,0 +1,2 @@
+module ManufacturerAttachmentsHelper
+end

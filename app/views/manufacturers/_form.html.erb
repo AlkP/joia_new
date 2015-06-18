@@ -1,0 +1,38 @@
+
+<%= form_for @manufacturer do |m| %>
+  <%= m.label :"Наименование: " %><%= m.text_field :name %>
+  <%= m.label :"Наименование ENG: " %><%= m.text_field :name_eng %>
+  <%= m.label :"Фото слайдера: " %><%= m.file_field :slide %>
+  <%= m.label :"Слайдер Строчка 1:" %><%= m.text_field :row1 %>
+  <%= m.label :"Слайдер Строчка 2:" %><%= m.text_field :row2 %>
+  <%= m.label :"Фото логотипа:" %><%= m.file_field :logo %>
+  <%= m.label :"Страна:" %><%= m.select :country_id, options_from_collection_for_select(@countries, :id, :name, @manufacturer.country_id), include_blank: true %>
+  <%= m.label :"Регион:" %><%= m.select :region_id, options_from_collection_for_select(@regions_one, :id, :name, @manufacturer.region_id), include_blank: true %>
+  <%= m.submit value: "Сохранить" %>
+<% end %>
+<script>
+  <% flag = true %>
+  var region = {
+    <% @regions.each do |r| %>
+    <% if flag %>
+      '<%= r.id %>': { 'country_id': '<%= r.country_id %>', 'name': '<%= r.name %>' }
+      <% flag = false %>
+    <% else %>
+      , '<%= r.id %>': { 'country_id': '<%= r.country_id %>', 'name': '<%= r.name %>' }
+    <% end %>
+  <% end %>
+  };
+  $('#manufacturer_country_id').change(function(){
+    $("#manufacturer_region_id").empty();
+    $("#manufacturer_region_id").append( $('<option value=""></option>'));
+    for (var i in region) {
+      if ( $('#manufacturer_country_id :selected').val() == region[i]['country_id'] ) {
+        $("#manufacturer_region_id").append( $('<option value="'+i+'">'+region[i]['name']+'</option>'));
+      }
+    }
+  });
+</script>
+
+<div class="manufacturer_attachments">
+  <%= render 'manufacturers/index_manufacturer_attachments' %>
+</div>

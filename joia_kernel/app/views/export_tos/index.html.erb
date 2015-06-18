@@ -1,0 +1,25 @@
+<p>
+  Export:
+  <%= link_to "CSV", export_tos_path(format: "csv") %> |
+  <%= link_to "Excel", export_tos_path(format: "xls") %> |
+  <%= link_to "Excel with img", export_to_path("catalog.xlsx") %> |
+  <%= link_to "Export to PDF", export_to_path("catalog.pdf") %>
+</p>
+<table>
+  <tr>
+    <th>Фото</th>
+    <th>Наименование</th>
+    <th>Наименование оригинальное</th>
+    <th>Описание</th>
+    <th>Штрих-код</th>
+  </tr>
+  <% @catalog.each do |c| %>
+    <tr>
+      <td><img src="<%= c.avatar.url %>" class="catalog-img"></td>
+      <td><%= c.name %></td>
+      <td><%= c.name_original %></td>
+      <td><%= c.description %></td>
+      <td><%= c.barcode %></td>
+    </tr>
+  <% end %>
+</table>

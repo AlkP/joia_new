@@ -1,0 +1,81 @@
+
+<% unless @filter.nil? %>
+  <% unless @filter["country"].nil? %>
+    <% @filter["country"].each do |c| %>
+        <span><%= Country.find(c).name %></span>
+      <a class="destroy_marker" href="/filter_destroy/<%= c %>/country" data-remote="true">
+        <i class="country_destroy_marker" id="<%= c %>"></i>
+      </a>
+    <% end %>
+    <!--<script>$('.country_destroy_marker').click(function() {remove_filter($(this).attr('id'), 'country')} )</script>-->
+  <% end %>
+
+
+  <% unless @filter["region"].nil? %>
+    <% @filter["region"].each do |r| %>
+        <span><%= Region.find(r).name %></span>
+      <a class="destroy_marker" href="/filter_destroy/<%= r %>/region" data-remote="true">
+        <i class="region_destroy_marker" id="<%= r %>"></i>
+      </a>
+    <% end %>
+    <!--<script>$('.region_destroy_marker').click(function() {remove_filter($(this).attr('id'), 'region')} )</script>-->
+  <% end %>
+
+  <% unless @filter["search_category"].nil? %>
+    <% @filter["search_category"].each do |c| %>
+        <span><%= SearchCategory.find(c).name %></span>
+      <a class="destroy_marker" href="/filter_destroy/<%= c %>/search_category" data-remote="true">
+        <i class="color_destroy_marker" id="<%= c %>"></i>
+      </a>
+    <% end %>
+    <!--<script>$('.color_destroy_marker').click(function() {remove_filter($(this).attr('id'), 'color')} )</script>-->
+  <% end %>
+
+  <% unless @filter["manufacturer"].nil? %>
+    <% @filter["manufacturer"].each do |m| %>
+        <span><%= Manufacturer.find(m).name %></span>
+      <a class="destroy_marker" href="/filter_destroy/<%= m %>/manufacturer" data-remote="true">
+        <i class="manufacturer_destroy_marker" id="<%= m %>"></i>
+      </a>
+    <% end %>
+    <!--<script>$('.manufacturer_destroy_marker').click(function() {remove_filter($(this).attr('id'), 'manufacturer')} )</script>-->
+  <% end %>
+
+  <% unless @filter["price"].nil? %>
+    <% @filter["price"].each do |p| %>
+      <% case p %>
+        <% when '1' %>
+            <span>0 - 550</span>
+        <a class="destroy_marker" href="/filter_destroy/1/price" data-remote="true">
+          <i class="mprice_destroy_marker" id="1"></i>
+          </a>
+      <% when '2' %>
+          <span>550 - 1000</span>
+        <a class="destroy_marker" href="/filter_destroy/2/price" data-remote="true">
+          <i class="mprice_destroy_marker" id="2"></i>
+        </a>
+      <% when '3' %>
+          <span>1000 - 2000</span>
+        <a class="destroy_marker" href="/filter_destroy/3/price" data-remote="true">
+          <i class="mprice_destroy_marker" id="3"></i>
+        </a>
+      <% when '4' %>
+          <span>2000 - 3000</span>
+        <a class="destroy_marker" href="/filter_destroy/4/price" data-remote="true">
+          <i class="mprice_destroy_marker" id="4"></i>
+        </a>
+      <% when '5' %>
+          <span>Cвыше 3000</span>
+        <a class="destroy_marker" href="/filter_destroy/5/price" data-remote="true">
+          <i class="mprice_destroy_marker" id="5"></i>
+        </a>
+      <% end %>
+    <% end %>
+    <!--<script>$('.manufacturer_destroy_marker').click(function() {remove_filter($(this).attr('id'), 'manufacturer')} )</script>-->
+  <% end %>
+
+<% end %>
+
+<script>
+  checkClickFilter();
+</script>

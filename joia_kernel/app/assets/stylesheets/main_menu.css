@@ -1,0 +1,18 @@
+#nav,#nav li ul{
+  margin:0px;
+  padding:0px;
+  list-style:none;
+}
+
+#nav > li{
+  float:left;
+  width:200px;
+}
+#nav li ul{
+  display:none;
+  position:absolute;
+  z-index:100;
+  width:150px;
+}
+
+#nav li:hover ul{display:block}

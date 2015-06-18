@@ -1,0 +1,17 @@
+<% init_wine_varieties %>
+
+<% if action_name == "new" %>
+  <% @wine_variety.each do |w_v| %>
+    <%= label_tag "Процент винного сорта - "+w_v.name+" : " %>
+    <%= text_field_tag "variety["+w_v.id.to_s+"]", 0 %>
+    <br>
+  <% end %>
+<% else %>
+  <% @catalog_w_v.each do |cwv| %>
+    <%= label_tag "Процент винного сорта - "+@wine_variety.find(cwv.wine_variety_id).name+" : " %>
+    <%= text_field_tag "variety["+cwv.wine_variety_id.to_s+"]", cwv.percent.to_s %>
+    <a data-confirm="Вы действительно хотите удалить вино?" data-remote="true" data-method="delete" href="/catalog_wine_varieties/<%= cwv.id %>" rel="nofollow">
+      <img src="/assets/del.png"></a>
+    <br>
+  <% end %>
+<% end %>

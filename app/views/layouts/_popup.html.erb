@@ -1,0 +1,56 @@
+<% if check_teenager(controller_name) %>
+  <div class="popup" id="popup">
+    <div class="popup__content">
+      <i class="popup__content__logo"></i>
+      <h1>Вам уже исполнилось 18 лет?</h1>
+      <form>
+        <p class="popup__content__yes">
+          <label for="yes">Да</label><input type="radio" name="yes_no" id="yes">
+        </p>
+        <script>
+          $('.popup__content__yes').click( function() {
+            var request = $.ajax({
+              url: "/filter/<%= controller_name %>/apply",
+              type: "get",
+              dataType: "script"
+            });
+          })
+        </script>
+        <p class="popup__content__no">
+          <label for="no">Нет</label><input type="radio" name="yes_no" id="no" value="http://www.fsrar.ru/legalacts/base/zakony">
+        </p>
+      </form>
+    </div>
+  </div>
+<% end %>
+<div class="signin-form hidden">
+  <div class="signin-form__in">
+    <div class="signin-form__container">
+      <%= form_tag sessions_path, class: 'signin-form__form' do %>
+      <!--<form class="signin-form__form" role="form">-->
+        <!--<div style="display:none"><input name="utf8" type="hidden" value="&#x2713;"/><input name="authenticity_token"-->
+                                                                                            <!--type="hidden"-->
+                                                                                            <!--value="dcovWY1Uu78VJx/DET9eh0vUe9d0TyPhSKdRK0zhFGA="/>-->
+        <!--</div>-->
+        <h2 class="signin-form__heading">Форма авторизации</h2>
+        <%= text_field_tag :email, params[:email], class: 'signin-form__form-control', placeholder: 'Email адрес', required: true, autofocus: true %>
+        <!--<input type="email" class="signin-form__form-control" placeholder="Email адрес" required autofocus>-->
+        <input id="password" name="password" type="password" class="signin-form__form-control" placeholder="Пароль" required>
+        <!--<input type="password" class="signin-form__form-control" placeholder="Пароль" required>-->
+        <!--<div class="signin-form__checkbox">-->
+          <!--<label>-->
+            <!--<input type="checkbox" value="remember-me"> Запомнить меня-->
+          <!--</label>-->
+        <!--</div>-->
+        <%= submit_tag 'Войти', class: 'signin-form__btn-submit' %>
+        <!--<button class="signin-form__btn-submit" type="submit">Войти</button>-->
+      <!--</form>-->
+      <% end %>
+      <button class="signin-form__btn-close">Закрыть</button>
+    </div>
+  </div>
+</div>
+<!-- end sign-in -->
+
+<!--<script src="js/popup.min.js"></script>-->
+<!--<script src="js/common.min.js"></script>-->

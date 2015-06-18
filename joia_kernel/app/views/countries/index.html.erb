@@ -1,0 +1,33 @@
+<br><br>
+<div>
+  <div class="countries" style="float:left;width:50%;">
+
+    <%= form_for @new_country do |f| %>
+      <%= f.label :"Новая страна " %> <%= f.text_field :name, style: "width: 60%;" %><%= f.submit value: "Сохранить" %>
+    <% end %>
+
+    <table>
+      <tr>
+        <th>
+          Наименование
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% @countries.each do |c| %>
+        <tr>
+          <td>
+            <%= link_to c.name, country_path(c), remote: true %>
+          </td>
+          <td>
+            <a data-confirm="Вы действительно хотите удалить страну?" data-method="delete" href="/countries/<%= c.id %>" rel="nofollow">
+              <img src="/assets/del.png"></a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="regions" style="float:left;width:50%;">
+
+  </div>
+</div>

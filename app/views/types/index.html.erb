@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Наименование типа
+      </th>
+      <th>
+        Наименование типа ENG
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @types.each do |t| %>
+    <tr>
+      <td class="all_center">
+        <%= t.name %></td>
+      </td>
+      <td class="all_center">
+        <%= t.name_eng %></td>
+      </td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>

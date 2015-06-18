@@ -1,0 +1,22 @@
+== Joia
+
+
+* Ruby version
+2.1.0
+
+* Rails version
+4.1.0
+
+* System dependencies
+Ubutnu ~> 12.04 64x
+
+* Configuration
+<tt>bundle</tt>
+
+* Database creation
+<tt>rake db:create</tt>
+
+* Database initialization
+<tt>rake db:migrate</tt>
+<tt>rake db:setup</tt>
+

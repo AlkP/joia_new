@@ -1,0 +1,48 @@
+
+  <div class="choosed_list_content">
+
+    <% order = session[:order] %>
+    <% unless order.nil? %>
+      <%  order.each_key do |key| %>
+        <% catalog = Catalog.find(key) %>
+        <% unless catalog.manufacturer_id.nil? %><% manufacturer = Manufacturer.find(catalog.manufacturer_id) %><% end %>
+        <div class="choosed_product clearfix">
+          <div class="choosed_product_pic">
+            <img src="<%= catalog.avatar.url %>" alt="">
+          </div>
+          <div class="choosed_product_text">
+            <span><% unless manufacturer.nil? and manufacturer.country_id.nil? %><%= Country.find(manufacturer.country_id).name %><% end %></span>
+            <p><a href="javascript:void(0)"><%= catalog.name %></a></p>
+            <em><%= manufacturer.name %></em>
+          </div>
+          <div class="choosed_product_type">
+            <span><% unless catalog.color_id.nil? %><%= Color.find(catalog.color_id).name %><% end %></span>
+            <span><% unless catalog.sugar_id.nil? %><%= Sugar.find(catalog.sugar_id).name %><% end %></span>
+          </div>
+          <div class="choosed_product_act">
+            <!--<div class="checked"><span class="popup-title_mini">Восстановить</span></div>-->
+            <a href="/order/<%= catalog.id %>" data-remote="true"><div class="checked"><span class="popup-title_mini">Удалить</span></div></a>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <!--<section class="choosed_services clearfix">-->
+      <!--<a href="javascript:void(0)"><i class="choosed_services_icon services_mail_icon"></i></a>-->
+      <!--<a href="javascript:void(0)"><i class="choosed_services_icon services_print_icon"></i></a>-->
+      <!--<a href="javascript:void(0)"><i class="choosed_services_icon services_call_icon">-->
+        <!--<span>Заказать звонок</span>-->
+      <!--</i></a>-->
+    <!--</section>-->
+  </div>
+  <div class="choosed_list_header clearfix">
+    <span class="heading">Список выбранных напитков</span>
+
+    <!--<div class="actions">-->
+      <!--<a href="javascript:void(0)" class="actions__icon action_collapse"></a>-->
+      <!--<a href="javascript:void(0)" class="actions__icon action_resize"></a>-->
+      <!--<a href="javascript:void(0)" class="actions__icon action_close">-->
+        <!--<span>Сохранить и закрыть</span>-->
+      <!--</a>-->
+    <!--</div>-->
+  </div>

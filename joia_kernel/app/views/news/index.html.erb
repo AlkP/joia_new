@@ -1,0 +1,21 @@
+<%= link_to "Новая статья", new_news_path %>
+<table>
+  <tr>
+    <th>
+      Наименование
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @news.each do |n| %>
+    <tr>
+      <td>
+        <%= link_to n.name, news_path(n) %>
+      </td>
+      <td>
+        <a data-confirm="Вы действительно хотите удалить новость?" data-method="delete" href="/news/<%= n.id %>" rel="nofollow">
+          <img src="/assets/del.png"></a>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,9 @@
+<div class="page houses">
+  <ul class="home-logos__list">
+    <% Manufacturer.all.each do |m| %>
+      <li class="home-logo__list__item">
+        <a data-no-turbolink="true" href="<%= list_manufacturer_path(m) %>"><img src="<%= m.logo.url %>"></a>
+      </li>
+    <% end %>
+  </ul>
+</div>

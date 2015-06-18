@@ -1,0 +1,36 @@
+<div class="dd" id="nestable">
+  <ol class="dd-list regionsList">
+    <% @manufacturers.each do |m| %>
+      <li class="dd-item" data-id="<%= m.id %>">
+        <div class="dd-handle dd3-handle">Drag</div>
+        <div class="dd3-content">
+          <div class="percent-30"><%= link_to m.name, manufacturer_path(m), remote: true %></div>
+          <div class="percent-40"><% unless m.country_id.nil? or Country.where('id = ?', m.country_id).first.nil? %><%= Country.where('id = ?', m.country_id).first.name %><% end %><% unless m.region_id.nil? or Region.where('id = ?', m.region_id).first.nil? %> | <%= Region.where('id = ?', m.region_id).first.name %><% end %></div>
+          <% if m.slide.exists? %>
+            <div class="percent-7"><img alt="" style="width: 32px; height: 20px;" src="<%= m.slide.url %>" border="0"/></div>
+            <div class="percent-5">
+              <a data-confirm="Вы действительно хотите удалить фото слайда?" data-method="delete" href="/manufacturers/<%= m.id %>/del_slide" rel="nofollow">
+                <img alt="" src="/assets/del.png" border="0"/></a>
+            </div>
+          <% end %>
+          <% if m.logo.exists? %>
+            <div class="percent-7"><img alt="" style="width: 32px; height: 20px;" src="<%= m.logo.url %>" border="0"/></div>
+            <div class="percent-5">
+              <a data-confirm="Вы действительно хотите удалить фото логотипа?" data-method="delete" href="/manufacturers/<%= m.id %>/del_logo" rel="nofollow">
+                <img alt="" src="/assets/del.png" border="0"/></a>
+            </div>
+          <% end %>
+          <div class="percent-5"><a data-confirm="Вы действительно хотите удалить производителя?" data-method="delete" data-remote="true" href="/manufacturers/<%= m.id %>" rel="nofollow">[X]</a></div>
+        </div>
+      </li>
+    <% end %>
+  </ol>
+</div>
+
+<script>
+  $('#nestable').nestable({
+    group: 1,
+    maxDepth: 1
+  })
+    .on('change', updateSortingManufacturer);
+</script>

@@ -1,0 +1,31 @@
+<%= form_for @news_att_new, :html => { :multipart => true }, :remote => true do |f| %>
+  <div class="field">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input name="news_attachment[news_id]" value="<%= @news_edit.id %>" type="hidden">
+
+    <%= f.label :file %>
+    <%= f.file_field :file %>
+  </div>
+<% end %>
+<script>
+  $('#news_attachment_file').change(function(){
+    $('#new_news_attachment').submit();
+  });
+</script>
+
+<br>
+
+<% @news_att.each do |att| %>
+  <div class="block-news">
+    <div class="block-news-el">
+      <img src="<%= att.att_file.url %>" class="photo-preview">
+    </div>
+    <div class="block-news-el">
+      <a data-confirm="Вы действительно хотите удалить новость?"
+         data-method="delete"
+         href="/news_attachments/<%= att.id %>"
+         rel="nofollow">
+        <img src="/assets/del.png"></a>
+    </div >
+  </div>
+<% end %>

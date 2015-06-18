@@ -1,0 +1,11 @@
+<%= link_to "Вернуться в список", stories_path %>
+
+<%= form_for @news_edit do |f| %>
+  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+  <%= f.label :"title " %> <%= f.text_field :title %>
+  <%= f.label :"intro_text " %> <%= f.text_field :intro_text %>
+  <%= f.label :"large_title " %> <%= f.text_field :large_title %>
+  <%= f.label :"Аватар" %><%= f.file_field :avatar %>
+  <%= f.text_area :large_text, :rows => 20, :cols => 120 %>
+  <%= f.submit value: "Сохранить", remote: true %>
+<% end %>

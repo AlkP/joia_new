@@ -1,0 +1,121 @@
+<div class="page houses">
+  <div class="house__in">
+    <div class="house__in__wrap">
+      <div class="house__expander__in expandable__in">
+        <div class="house__expander__description__in">
+          <p class="house__expander__description">
+            Дом Ожье был основан в 1859 году Антуаном Ожье. На протяжении всей своей истории стратегия Дома - добиваться
+            успеха. Сегодня ведущие винные издания и критики мира, такие как Wine Spectator, Wine Advocate Роберта
+            Паркера, Дженезис Робинсон и др. подтверждают этот статус. В собственности Дома находятся уникальные
+            погреба, а главное – бесценные виноградники в Шатонеф-дю-Пап (Chateauneuf-du-Pape), известном на весь мир,
+            престижнейшем аппеласьоне.
+          </p>
+          <img src="/assets/img/ogier_logo.png" alt="">
+        </div>
+        <div class="house__expander__details expandable" style="display: none;">
+          <p>Уникальность погребов в том, что в погребах находятся несколько артезианских скважин. Постоянный поток
+            прохладной, чистой воды обеспечивает, идеальные условия температуры и влажности в погребах, где созревают
+            вина Ожье.</p>
+
+            <p>Высокий уровень качества этих вин получил признание в международной прессе, сделав, таким образом, Clos de
+              l’Oratoire des Papes визитной карточкой Chateauneuf-du-Pape. Необычная этикетка, созданная в 1926 году,
+              остается неизменной и по сегодняшний день, отдавая дань своей истории.</p>
+
+              <p><a class="house__expander__details__link" href="http://www.ogier.fr/">http://www.ogier.fr/</a></p>
+            </div>
+        <!--  <div class="house__expander__button expander">
+          <span>читать полностью</span>
+          <i class="arrow"></i>
+        </div>-->
+        <div class="house__expander__button expander">
+          <a href="#" class="toggle_link" data-toggle=".about_project">
+            <span>читать полностью</span>
+            <i></i>
+          </a>	</div>
+        </div>
+        <div class="house__slider__bottles__in">
+          <div class="house__slider__bottles">
+            <div class="house__slider__bottles__slides cycle-slideshow" 
+            data-cycle-fx="carousel" 
+            data-cycle-slides=".house__slider__bottles__slide" 
+            data-cycle-prev=".house__slider__bottles__prev" 
+            data-cycle-next=".house__slider__bottles__next" 
+            style="position: relative; overflow: hidden;">
+            <% @catalogs.each do |c| %>
+            <div class="house__slider__bottles__slide tooltip__container cycle-slide cycle-sentinel" style="position: static; top: 0px; left: 0px; z-index: 100; opacity: 1; display: block;">
+              <a class="house__slider__bottles__link" href="#catalog_<%= c.id %>">
+                <div class="tooltip__in">
+                  <i class="tooltip"><%= c.name %><% unless (c.color_id.nil? or c.color_id == false) %> <%= Color.find(c.color_id).name %><% end %></i>
+                  <img src="/assets/img/bottles/ogier/1.png" alt="">
+                </div>
+              </a>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="house__slider__bottles__next"></div>
+        <div class="house__slider__bottles__prev"></div>
+      </div>
+      <div class="house__slider__thumbs__in">
+        <div class="house__slider__thumbs">
+          <div class="house__slider__thumbs__slides cycle-slideshow slideshow" 
+          data-cycle-fx="carousel"
+          data-cycle-slides=".house__slider__thumbs__slide" 
+          data-cycle-carousel-visible="4"
+          data-cycle-prev=".house__slider__thumbs__prev" data-cycle-next=".house__slider__thumbs__next">
+          <% @manufacturer_attachments.each do |m| %>
+          <div class="house__slider__thumbs__slide cycle-slide cycle-sentinel">
+            <a href="<%= m.photo.url %>" data-fancybox-group="house_slider" class="fancybox-button">
+              <img src="<%= m.photo.url %>" alt="">
+            </a>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="house__slider__thumbs__next"></div>
+      <div class="house__slider__thumbs__prev"></div>
+    </div>
+  </div>
+  <!-- begin best offers -->
+  <div class="best-offers__wrap">
+    <div class="h2">
+      ЛУЧШИЕ ПРЕДЛОЖЕНИЯ
+      <a href="javascript:void(0)" class="best-offers__wrap__more">
+        <span class="best-offers__wrap__more__text">подробнее</span>
+        <i class="best-offers__wrap__more__icon"></i>
+      </a>
+    </div>
+    <div class="best-offers__wrap__in">
+      <div class="best-offers" style="background-image: url(/assets/img/ogier_back.jpg);">
+        <div class="best-offers__background__bottle">
+          <img src="/assets/img/bottles/ogier/2.png" alt="">
+        </div>
+        <div class="best-offers__in">
+          <div class="best-offers__description">
+            <h3 class="best-offers__description__rus">Шатонеф-дю-Пап АОС Кло де Л'Оратори де Пап, сухое (белое/красное)</h3>
+            <h4 class="best-offers__description__fr">Chateauneuf-du-Pape AOC Clos de L'Oratoire des Papes</h4>
+            <p>
+              Высокий уровень качества этих вин получил признание в международной прессе, сделав, таким образом, Clos de l’Oratoire des Papes визитной карточкой Chateauneuf-du-Pape. Необычная этикетка, созданная в 1926 году, остается неизменной и по сегодняшний день, отдавая дань своей истории.
+            </p>
+
+            <p>
+              «Звездная» история вин из деревни Шатонеф начинается в 1309 году,  когда по настоянию короля Франции Филиппа Красивого, желавшего контролировать «духовную власть», из Рима в Авиньон была перенесена резиденция римских пап. Этот город стал церковным центром всей Европы; и благодаря такой диспозиции, потребление вин (не только Шатонефа, но и всей долины Роны) возросло более чем значительно - как известно, именно монахам принадлежит заслуга развития виноделия во многих регионах Франции. А для деревни Шатонеф подобная ситуация была выигрышна вдвойне - именно здесь разместилась загородная резиденция Пап. С тех пор вина из местности Шатонеф стали постоянно поставляться к папскому «столу»; они стали носить наименование Vin du Pape («папские вина»), которое позднее трансформировалось в Chateauneuf-du-Pape («новый замок Папы»). Сегодня  на бутылке вина этого АОС  можно увидеть выпуклое изображение папской тиары и скрещенных ключей Святого Петра – это обязательный знак, который должен быть выдавлен на стекле бутылки как гарантия подлинности вина из региона Chateauneuf-du-Pape.
+            </p>
+          </div>
+          <div class="best-offers__logo">
+            <img src="/assets/img/ogier_logo.png" alt="">
+            <!-- <span>ЛОГО ДОМА</span> -->
+          </div>
+        </div>
+      </div>    <!--import "../../offers/__in/offers__in.kit"-->
+    </div>
+  </div>
+  <!-- end best offers -->		<!-- begin catalog  -->
+  <div class="catalog">
+
+    <%= render 'catalogs/form_index_body_wine' %>
+    <script>initCatalog();</script>
+
+  </div>
+</div>
+</div>

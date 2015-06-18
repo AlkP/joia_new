@@ -1,0 +1,29 @@
+<div class="superslider  cycle-slideshow"
+     data-cycle-fx=fade
+     data-cycle-timeout=6000
+     data-cycle-speed=2000
+     data-cycle-slides=".superslider__slide"
+     data-cycle-pager=".superslider__pagi"
+     data-cycle-prev=".superslider__prev"
+     data-cycle-next=".superslider__next">
+
+  <div class="superslider__slides">
+    <% Manufacturer.all.each do |m| %>
+      <% if m.slide.exists? %>
+        <div class="superslider__slide" style="background-image: url(<%= m.slide.url %>);">
+          <div class="superslider__text">
+            <span><%= m.row1 %></span>
+            <%= m.row2 %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="superslider__in">
+    <div class="superslider__next"></div>
+    <div class="superslider__prev"></div>
+    <div class="superslider__playpause"></div>
+    <div class="superslider__pagi"></div>
+  </div>
+
+</div>

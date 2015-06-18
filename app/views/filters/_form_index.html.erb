@@ -1,0 +1,40 @@
+
+<% getFilter %>
+
+<% case @url %>
+  <% when 'search__filter1' %>
+    <h3 class="search__title">Страна</h3>
+    <ul class="search__options">
+      <% @country.each do |c| %>
+        <li><a class="is-checkbox<% if @filterCountry[c.id.to_s] %> is-active<% end %>" href="/filter/<%= c.id %>/country" data-remote="true"><span><%= c.name %></span></a></li>
+      <% end %>
+    </ul>
+  <% when 'search__filter2' %>
+    <h3 class="search__title">Регион</h3>
+    <ul class="search__options">
+      <% @region.each do |r| %>
+        <li><a class="is-checkbox<% if @filterRegion[r.id.to_s] %> is-active<% end %>" href="/filter/<%= r.id %>/region" data-remote="true"><span><%= r.name %></span></a></li>
+      <% end %>
+    </ul>
+  <% when 'search__filter4' %>
+    <h3 class="search__title">Производитель</h3>
+    <ul class="search__options">
+      <% @manufacturer.each do |m| %>
+        <li><a class="is-checkbox<% if @filterManufacturer[m.id.to_s] %> is-active<% end %>" href="/filter/<%= m.id %>/manufacturer" data-remote="true"><span><%= m.name %></span></a></li>
+      <% end %>
+    </ul>
+  <% when 'search__filter5' %>
+    <h3 class="search__title">Цена</h3>
+    <ul class="search__options">
+      <% if @filterPriceAccess[1] %><li><a class="is-checkbox<% if @filterPrice["1"] %> is-active<% end %>" href="/filter/1/price" data-remote="true"><span>0 - 550</span></a></li><% end %>
+      <% if @filterPriceAccess[2] %><li><a class="is-checkbox<% if @filterPrice["2"] %> is-active<% end %>" href="/filter/2/price" data-remote="true"><span>550 - 1000</span></a></li><% end %>
+      <% if @filterPriceAccess[3] %><li><a class="is-checkbox<% if @filterPrice["3"] %> is-active<% end %>" href="/filter/3/price" data-remote="true"><span>1000 - 2000</span></a></li><% end %>
+      <% if @filterPriceAccess[4] %><li><a class="is-checkbox<% if @filterPrice["4"] %> is-active<% end %>" href="/filter/4/price" data-remote="true"><span>2000 - 3000</span></a></li><% end %>
+      <% if @filterPriceAccess[5] %><li><a class="is-checkbox<% if @filterPrice["5"] %> is-active<% end %>" href="/filter/5/price" data-remote="true"><span>Свыше 3000</span></a></li><% end %>
+    </ul>
+  <% else %>
+<% end %>
+
+<script>
+  checkClickFilter();
+</script>

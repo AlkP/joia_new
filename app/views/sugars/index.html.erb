@@ -1,0 +1,30 @@
+<div>
+  <div class="sugars">
+
+    <%= link_to "Новый сахар", new_sugar_path, remote: true %>
+
+    <table>
+      <tr>
+        <th>
+          Наименование
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% @sugars.each do |s| %>
+        <tr>
+          <td>
+            <%= link_to s.name, sugar_path(s), remote: true %>
+          </td>
+          <td>
+            <a data-confirm="Вы действительно хотите удалить сахар?" data-method="delete" href="/sugars/<%= s.id %>" rel="nofollow">
+              Удалить сахар</a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="sugar_details">
+
+  </div>
+</div>

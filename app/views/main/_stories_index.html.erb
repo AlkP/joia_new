@@ -1,0 +1,30 @@
+
+<% @stories.each do |story| %>
+
+  <a href="javascript:void(0)" class="entry<% if @first %> entry_big<% end %> entry<%= @n1 %>">
+    <div class="entry__img">
+      <div class="img-cover" style="background-image: url(<%= story.avatar.url %>)"></div>
+    </div>
+    <div class="entry__text">
+      <h3 class="entry__title"><%= story.title %>.</h3>
+      <p class="entry__introtext"><%= story.intro_text %></p>
+    </div>
+    <div class="entry__large gradiente_block">
+      <i class="entry__large__close"></i>
+      <div class="entry__large__img">
+        <img src="<%= story.avatar.url %>">
+      </div>
+      <h3 class="entry__large__title"><%= story.large_title %></h3>
+      <div class="entry__large__text">
+        <% unless story.large_text.nil? %><%= story.large_text.html_safe %><% end %>
+      </div>
+    </div>
+  </a>
+  <% @first = false if @first %>
+
+<% end %>
+<div class="alkp_hidden">
+  <% unless @max %>
+    <a href="/show_more_stories/<%= @n1 %>/<%= @n2 %>" onclick="$('.alkp_hidden').hide();" data-remote="true" class="more">показать еще</a>
+  <% end %>
+</div>

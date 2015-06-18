@@ -1,0 +1,18 @@
+$('.editModal_close').click();
+
+$('.countries').html("<%= escape_javascript render 'countries/countries_list' %>");
+
+$('#nestable').nestable({
+  group: 1,
+  maxDepth: 1
+})
+  .on('change', updateSortingCountry);
+
+$('.editBtnCountry').click(function(){
+  var id = $(this).attr('id');
+//    alert(id);
+  $('#openModal').arcticmodal({
+    type: 'ajax',
+    url: '/countries/'+id+'/edit'
+  });
+})

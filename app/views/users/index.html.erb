@@ -1,0 +1,28 @@
+
+<a href="/users/new">Новый пользователь</a>
+</button>
+<table class="table">
+  <thead>
+  <tr>
+    <th>
+      email
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |u| %>
+    <tr>
+      <td>
+        <a href="/users/<%= u.id %>">
+          <%= u.email %></a>
+      </td>
+      <td>
+        <a data-confirm="Вы действительно хотите удалить пользователя?" data-method="delete" href="/users/<%= u.id %>" rel="nofollow">
+          удалить пользователя</a>
+      </td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>

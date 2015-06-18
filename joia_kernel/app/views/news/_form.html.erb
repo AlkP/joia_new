@@ -1,0 +1,15 @@
+<%= javascript_include_tag '/tinymce/tinymce.min.js', 'data-turbolinks-track' => true %>
+<%= link_to "Вернуться в список", news_index_path %>
+<%= render "news_attachments/index" %>
+<%= form_for @news_edit, remote: true do |f| %>
+  <%= f.label :"Наименование " %> <%= f.text_field :name, style: "width: 60%;" %><%= f.submit value: "Сохранить", remote: true %>
+  <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 120 %>
+<% end %>
+
+<script type="text/javascript">
+  $.ajax({
+    type: "GET",
+    url: "/js/edit_news.js",
+    dataType: "script"
+  });
+</script>

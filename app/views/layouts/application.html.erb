@@ -1,0 +1,121 @@
+
+<% unless (controller_name == 'countries' && action_name == 'edit') or (controller_name == 'regions' && action_name == 'edit') %>
+
+<!DOCTYPE html>
+<html<% if current_user and current_user.admin? %> class="admin"<% end %>>
+<head>
+  <title>Joia</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!--< %= headjs_include_tag(:all) %>-->
+  <%= csrf_meta_tags %>
+        <!--[if gte IE 9]>
+        <style type="text/css">
+          .panel-gradient {
+            filter: none;
+          }
+        </style>
+        <![endif]-->
+      </head>
+
+      <% unless current_user and current_user.admin? %>
+
+      <body class="<% if controller_name == 'catalogs' %>b-catalog<% end %>">
+      <div class="spinner" style="display: none;"></div>
+        <div class="blur<% if current_user %> blur_-allow<% end %><% unless check_teenager(controller_name) %> blur_-allow<% end %>">
+          <div class="top">
+            <%= render 'layouts/menu' %>
+            <div class="top__in">
+              <% unless (controller_name == 'contacts') %>
+              <%= render 'layouts/superslider' %>
+              <div class="page
+              <% unless controller_name == 'main' %> pr0<% end %>
+              <% if controller_name == 'about' or controller_name == 'catalogs' or controller_name == 'contacts' %> center<% end %>
+              <% if controller_name == 'list_manufacturers' %> houses<% end %>">
+            </div>
+            <% else %>
+            <%= render 'layouts/map' %>
+            <% end %>
+          </div>
+        </div>
+        <div class="page<% unless controller_name == 'main' %> pr0<% end %>">
+          <%= render 'layouts/logoslider' %>
+          <% if controller_name == 'main' %>
+          <div class="open-filter">
+            <a href="javascript:void(0)" class="open-filter__link">
+              <span class="open-filter__name">Поиск вина</span>
+              <i class="open-filter__icon"></i>
+            </a>
+          </div>
+          <script>showCatalogInMain();</script>
+          <% end %>
+          <% if controller_name == 'catalogs' and action_name == 'index' %>
+          <div class="search search_wide">
+            <%= render 'layouts/wide_search' %>
+          </div>
+          <% end %>
+
+          <%= yield %>
+
+        </div>
+
+        <% if controller_name == "catalogs" %>
+        <div class="choosed_list_container collapsed show" style="display: none;">
+          <%= render 'layouts/order_list_index' %>
+        </div>
+        <% end %>
+        <%= render 'layouts/footer' %>
+
+      </div>
+
+      <div class="warning"></div>
+      <%= render 'layouts/popup' %>
+
+      <script>
+      var head_conf = {
+        screens: [240, 320, 480, 640, 768, 800, 900, 1024, 1280, 1440, 1680, 1920],
+        screensCss: { "gt": true, "gte": false, "lt": true, "lte": false, "eq": false },
+        browsers: [
+        { ie: { min: 6, max: 11 } }
+              //,{ chrome : { min: 8, max: 31 } }
+              //,{ ff     : { min: 3, max: 26 } }
+              //,{ ios    : { min: 3, max:  7 } }
+              //,{ android: { min: 2, max:  4 } }
+              //,{ webkit : { min: 9, max: 12 } }
+              //,{ opera  : { min: 9, max: 12 } }
+              ],
+              browserCss: { "gt": true, "gte": false, "lt": true, "lte": false, "eq": true },
+              html5: true,
+              page: "-page",
+              section: "-section",
+              head: "head"
+            };
+            </script>
+
+            <script type="text/javascript" src="/js/lib/head.js"></script>
+            <script type="text/javascript" src="/js/lib/jquery.cookie.js"></script>
+            <script type="text/javascript" src="/js/lib/jquery.textchange.min.js"></script>
+            <script type="text/javascript" src="/js/lib/jquery.maphilight.min.js"></script> 
+            <script type="text/javascript" src="/js/lib/cycle.js"></script>
+            <script type="text/javascript" src="/js/lib/carousel.js"></script>
+            <script type="text/javascript" src="/js/lib/jsrender.min.js"></script>
+            <script type="text/javascript" src="/js/lib/search.js?dfhhg"></script>
+            <script type="text/javascript" src="/js/lib/fancybox.js"></script>
+            <script type="text/javascript" src="/js/popup.min.js"></script>
+            <script type="text/javascript" src="/js/common.min.js"></script>
+          </body>
+          </html>
+
+          <% else %>
+
+          <%= render 'layouts/menu' %>
+          <div class="admin__tools">
+            <%= yield %>
+          </div>
+
+          <% end %>
+          <% else %>
+
+          <%= yield %>
+
+          <% end %>

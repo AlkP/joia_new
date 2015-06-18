@@ -1,0 +1,26 @@
+<h3><%= Country.find(@country_id).name %></h3>
+
+<%= form_for @new_region, remote: true do |f| %>
+  <%= f.label :"Новый регион " %><%= f.text_field :country_id, value: @country_id, style: "display: none;" %><%= f.text_field :name, style: "width: 60%;" %><%= f.submit value: "Сохранить", remote: true %>
+<% end %>
+
+<table>
+  <tr>
+    <th>
+      Наименование
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @regions.each do |r| %>
+    <tr>
+      <td>
+        <%= r.name %>
+      </td>
+      <td>
+        <a data-confirm="Вы действительно хотите удалить регион?" data-method="delete" data-remote="true" href="/regions/<%= r.id %>" rel="nofollow">
+          <img src="/assets/del.png"></a>
+      </td>
+    </tr>
+  <% end %>
+</table>

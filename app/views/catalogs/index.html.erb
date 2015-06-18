@@ -1,0 +1,6 @@
+<% if current_user and current_user.admin? %>
+  <%= render 'catalogs/form_index_admin' %>
+<% else %>
+  <%= render 'catalogs/form_index' %>
+  <%= render 'catalogs/generator' %>
+<% end %>

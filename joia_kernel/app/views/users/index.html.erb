@@ -1,0 +1,33 @@
+<div class="row-fluid">
+  <div class="">
+    <button type="button" class="btn btn-block btn-sm btn-primary">
+      <a href="/users/new"
+         class="cbtn btn-block btn-sm btn-primary">
+        Новый пользователь</a>
+    </button>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>
+          email
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |u| %>
+        <tr class="active">
+          <td>
+            <a href="/users/<%= u.id %>">
+              <%= u.name %></a></td>
+          <td>
+            <a data-confirm="Вы действительно хотите удалить пользователя?" data-method="delete" href="/users/<%= u.id %>" rel="nofollow">
+              <img src="/assets/del.png"></a>
+          </td>
+        </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+</div>

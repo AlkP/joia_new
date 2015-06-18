@@ -1,0 +1,24 @@
+<% unless current_user and current_user.admin? %>
+  <div class="b">
+    <h2 class="h2">Новости</h2>
+    <div class="entries">
+      <%= render 'main/stories_index' %>
+    </div>
+  </div>
+  <div class="c" hidden="hidden">
+    <%= render 'catalogs/form_index' %>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $('.entry<%= @n1 %>').on('click', function() {
+        $(this).toggleClass('is-large');
+      });
+    });
+  </script>
+<% else %>
+  <div class="admin__tools__welcome">
+    <div><h1>Добро пожаловать в систему управления сайтом joia.ru!</h1>
+      Для начала управления сайтом, используйте меню слева.
+    </div>
+  </div>
+<% end %>

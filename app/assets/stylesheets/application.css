@@ -1,0 +1,94 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+.percent-5  {width:  5%;float: left;}
+.percent-7  {width:  7%;float: left;}
+.percent-20 {width: 20%;float: left;}
+.percent-30 {width: 30%;float: left;}
+.percent-35 {width: 35%;float: left;}
+.percent-40 {width: 40%;float: left;}
+.percent-45 {width: 45%;float: left;}
+.percent-50 {width: 50%;float: left;}
+.percent-85 {width: 85%;float: left;}
+.percent-90 {width: 90%;float: left;}
+
+.pen        {width: 16px;height: 16px;}
+.all_center {text-align: center !important;}
+.font-8 a   {font-size: 8px !important;}
+
+.countries            {float:left;width:50%;}
+.regions              {float:left;width:50%;}
+.manufacturers        {float:left;width:50%;}
+.manufacturer_details {float:left;width:50%;}
+.colors               {float:left;width:50%;}
+.color_details        {float:left;width:50%;}
+.sugars               {float:left;width:50%;}
+.sugar_details        {float:left;width:50%;}
+.categories           {float:left;width:50%;}
+.category_details     {float:left;width:50%;}
+.wine_varieties       {float:left;width:50%;}
+.wine_variety_details {float:left;width:50%;}
+.admin_catalogs       {float:left;width:50%;}
+.admin_catalog        {float:left;width:50%;}
+.search_category      {float:left;width:50%;}
+.search_category_details {float:left;width:50%;}
+
+.mainWindow {height:85%;}
+.admin_catalogs, .admin_catalog, .manufacturers, .manufacturer_details {height:100%;overflow: auto;}
+
+.admin_catalog label,.color_details label,.sugar_details label,.manufacturer_details label, .search_category_details label {
+  display: block;
+  color: rgba(71, 8, 213, 0.69);
+  width: 30%;
+  float: left;
+}
+.admin_catalog input,.color_details input,.sugar_details input,.manufacturer_details input, .search_category_details input {
+  background-color: #f1f0ef;
+  width: 40%;
+}
+.admin_catalog textarea {
+  background-color: #f1f0ef;
+  width: 40%;
+  height: 75px;
+}
+
+.admin_catalog select {
+  width: 40%;
+  height: 25px;
+}
+
+.admin_catalog .submit {
+  width: 65px !important;
+  background-color: rgba(46, 213, 40, 0.69) !important;
+}
+
+.admin_catalog .inpPercent {
+  width: 30px !important;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/loader.gif");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: #000000;
+  opacity: 0.6;
+  position: fixed;
+  z-index: 9999;
+  zoom: 0.2;
+}

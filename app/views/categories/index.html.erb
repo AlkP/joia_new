@@ -1,0 +1,30 @@
+<div>
+  <div class="categories">
+
+    <%= link_to "Новая категория", new_category_path, remote: true %>
+
+    <table>
+      <tr>
+        <th>
+          Наименование
+        </th>
+        <th>
+        </th>
+      </tr>
+      <% @categories.each do |c| %>
+        <tr>
+          <td>
+            <%= link_to c.name, category_path(c), remote: true %>
+          </td>
+          <td>
+            <a data-confirm="Вы действительно хотите удалить категорию?" data-method="delete" href="/categories/<%= c.id %>" rel="nofollow">
+              Удалить категорию</a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="category_details">
+
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="logoslider ">
+  <div class="logoslider__in ">
+    <div class="logoslider__slides cycle-slideshow"
+         data-cycle-fx="carousel"
+         data-cycle-prev=".logoslider__prev"
+         data-cycle-next=".logoslider__next">
+
+      <% Manufacturer.all.each do |m| %>
+        <% if m.logo.exists? %>
+          <img src="<%= m.logo.url %>" alt="">
+        <% end %>
+      <% end %>
+
+    </div>
+    <div class="logoslider__next"></div>
+    <div class="logoslider__prev"></div>
+  </div>
+</div>

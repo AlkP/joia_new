@@ -1,0 +1,33 @@
+<ul id="nav">
+  <li>
+    <% if current_user %>
+      <%= link_to current_user.email + ": Log out", "logout" %>
+    <% else %>
+      <%= link_to "Log in", "login" %>
+    <% end %>
+  </li>
+  <li><a href="" onclick="return false;">Настройки</a>
+    <ul>
+
+      <hr>
+      <li><%= link_to "Каталог", catalogs_path %></li>
+      <hr>
+      <li><%= link_to "Экспорт", export_tos_path %></li>
+      <hr>
+      <li><%= link_to "Типы", types_path %></li>
+      <li><%= link_to "Страны / регионы", countries_path %></li>
+      <li><%= link_to "Цвета", colors_path %></li>
+      <li><%= link_to "Категории", categories_path %></li>
+      <li><%= link_to "Сорта вин", wine_varieties_path %></li>
+      <li><%= link_to "Производители", manufacturers_path %></li>
+      <hr>
+      <li><%= link_to "Новости", news_index_path %></li>
+      <hr>
+      <li><%= link_to "Пользователи", users_path %></li>
+      <hr>
+      <li><%= link_to "Закачка справочника", imports_path %></li>
+      <hr>
+
+    </ul>
+  </li>
+</ul>

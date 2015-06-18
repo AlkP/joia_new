@@ -1,0 +1,21 @@
+<%= form_for @new_country do |f| %>
+  <%= f.label :"Новая страна " %><%= f.label :"rus" %><%= f.text_field :name %><%= f.label :"eng" %><%= f.text_field :name_eng %><%= f.submit value: "Создать" %>
+<% end %>
+
+<div class="dd" id="nestable">
+  <ol class="dd-list">
+    <% @countries.each do |c| %>
+      <li class="dd-item" data-id="<%= c.id %>">
+        <div class="dd-handle dd3-handle">Drag</div>
+        <div class="dd3-content">
+          <div class="percent-90"><%= link_to c.name, country_path(c), remote: true %></div>
+          <div class="percent-5"><a class="editBtnCountry" id="<%= c.id %>" href="javascript:void(0)"><i class="pen"></i></a></div>
+          <div class="percent-5"><a data-confirm="Вы действительно хотите удалить страну?" data-method="delete" href="/countries/<%= c.id %>" rel="nofollow">[X]</a></div>
+        </div>
+      </li>
+      <!--< %= link_to c.name, country_path(c), remote: true %>< %= c.name_eng %>-->
+      <!--<a data-confirm="Вы действительно хотите удалить страну?" data-method="delete" href="/countries/< %= c.id %>" rel="nofollow">-->
+      <!--Удалить страну</a>-->
+    <% end %>
+  </ol>
+</div>

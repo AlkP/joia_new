@@ -1,0 +1,86 @@
+<!-- begin search  -->
+<script id="update-search" type="text/x-jsrender">
+                <div>
+                    <!-- begin filter -->
+                    <div class="search__filter">
+                        <h3 class="search__title">Страна</h3>
+
+                        <ul class="search__options">
+                            {{for country}}
+                            <li><label for="{{:id}}"><input type="radio" name="country" id="{{:id}}">{{:name}}</label></li>
+                            {{/for}}
+                        </ul>
+                        <a class="search__showall" href='#'>показать все</a>
+                    </div>
+                    <!-- end filter -->
+
+                    <!-- begin filter -->
+                    <div class="search__filter">
+                        <h3 class="search__title">Регион</h3>
+
+                        <ul class="search__options">
+                            {{for region}}
+                            <li><label for="{{:id}}"><input type="radio" name="region" id="{{:id}}">{{:name}}</label></li>
+                            {{/for}}
+
+                        </ul>
+                        <a class="search__showall" href='#'>показать все</a>
+                    </div>
+                    <!-- end filter -->
+
+                    <!-- begin filter -->
+                    <div class="search__filter">
+                        <h3 class="search__title">Категория</h3>
+
+                        <ul class="search__categ">
+                            {{for category}}
+                            <li><label for="{{:id}}"><i class="{{:icon_class}}"></i><input type="radio" name="category" id="{{:id}}"><span>{{:name}}</span></label></li>
+                            {{/for}}
+
+                        </ul>
+                        <a class="search__showall" href='#'>показать все</a>
+                    </div>
+                    <!-- end filter -->
+
+                    <!-- begin filter -->
+                    <div class="search__filter">
+                        <h3 class="search__title">Производитель</h3>
+
+                        <ul class="search__options">
+                            {{for produce}}
+                            <li><label for="{{:id}}"><input type="radio" name="produce" id="{{:id}}">{{:name}}</label></li>
+                            {{/for}}
+
+                        </ul>
+                        <a class="search__showall" href='#'>показать все</a>
+                    </div>
+                    <!-- end filter -->
+
+                    <!-- begin filter -->
+                    <div class="search__filter is-last">
+                        <h3 class="search__title">Цена</h3>
+
+                        <ul class="search__options">
+                            {{for price}}
+                            <li><label for="{{:id}}"><input type="radio" name="price" id="{{:id}}">{{:from}}-{{:to}}</label></li>
+                            {{/for}}
+
+                        </ul>
+                        <a class="search__showall" href='#'>показать все</a>
+                    </div>
+                    <!-- end filter -->
+                    <div class="search__submit">ПОЛНЫЙ КАТАЛОГ</div>
+                </div>
+
+
+
+
+		</script>
+<div class="search">
+  <ul class="search__switcher">
+    <li><a href="#" class="search__switcher1 is-active">Вино</a></li>
+    <li><a href="#" class="search__switcher2">Крепкий алкоголь</a></li>
+  </ul>
+  <div class="search__filters" data-template="#update-search"></div>
+</div>
+<!-- end search -->

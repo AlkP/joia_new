@@ -1,0 +1,26 @@
+<div class="row-fluid">
+  <div class="span2">
+
+  </div>
+  <div class="span4">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>
+          Наименование типа
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @types.each do |t| %>
+          <tr class="active">
+            <td>
+              <%= t.name %></td>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

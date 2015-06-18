@@ -1,0 +1,43 @@
+<% init %>
+
+<form name="input" action="/add_new_wine_variety" method="post" data-remote="true">
+  <%= hidden_field_tag "new[catalog_id]", @catalog.id %>
+  <%= c.label :"Добавить винный сорт: " %><%= select_tag "new[wine_variety_id]", options_from_collection_for_select(@wine_variety, :id, :name) %>
+  <%= text_field_tag "new[percent]", 0 %>
+  <input type="submit" value="Добавить">
+</form>
+<%= form_for @catalog do |c| %>
+  <!--Задаем сортовой состав-->
+  <div class="catalog_wine_varieties">
+    <%= render 'catalogs/index_wine_variety' %>
+  </div>
+
+  <!--Задание цены и скидки-->
+  <% @types.each do |type| %>
+    <% if action_name == "new" %>
+      <%= c.label "Цена для "+type.name+" : " %>
+      <%= text_field_tag "price["+type.id.to_s+"]", 0 %>
+      <%= c.label "Скидка: " %>
+      <%= text_field_tag "discount["+type.id.to_s+"]", 0 %>
+    <% else %>
+      <% price_each = @prices.where('type_id = ?', type).first %>
+      <%= c.label "Цена для "+type.name+" : " %>
+      <%= text_field_tag "price["+type.id.to_s+"]", price_each.price %>
+      <%= c.label "Скидка: " %>
+      <%= text_field_tag "discount["+type.id.to_s+"]", price_each.discount %>
+    <% end %>
+  <% end %>
+  <%= c.label :"Наименование " %><%= c.text_field :name %>
+  <%= c.label :"Наименование оригинальное " %><%= c.text_field :name_original %>
+  <%= c.label :"Описание " %><%= c.text_area :description %>
+  <%= c.label :"Крепость " %><%= c.text_field :abv %>
+  <%= c.label :"Объем " %><%= c.text_field :volume %>
+  <%= c.label :"Бутылок в упаковке " %><%= c.text_field :amount %>
+  <%= c.label :"Награды " %><%= c.text_field :honors %>
+  <%= c.label :"Штрих-код " %><%= c.text_field :barcode %>
+  <%= c.label :"Фото " %><%= c.file_field :avatar %>
+  <%= c.label :"Производитель " %><%= c.select :manufacturer_id, options_from_collection_for_select(@manufacturers, :id, :name, @catalog.manufacturer_id), include_blank: true %>
+  <%= c.label :"Категория " %><%= c.select :category_id, options_from_collection_for_select(@categories, :id, :name, @catalog.category_id), include_blank: true %>
+  <%= c.label :"Цвет " %><%= c.select :color_id, options_from_collection_for_select(@colors, :id, :name, @catalog.color_id), include_blank: true %>
+  <%= c.submit value: "Сохранить" %>
+<% end %>

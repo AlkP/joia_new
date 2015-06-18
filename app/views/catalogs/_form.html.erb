@@ -1,0 +1,78 @@
+<% init %>
+
+<form name="input" action="/add_new_wine_variety" method="post" data-remote="true">
+  <%= hidden_field_tag "new[catalog_id]", @catalog.id %>
+  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+  Добавить винный сорт: <%= select_tag "new[wine_variety_id]", options_from_collection_for_select(@wine_variety, :id, :name) %>
+  <%= text_field_tag "new[percent]", 0, class: "inpPercent" %>
+  <input class="submit" type="submit" value="Добавить">
+</form>
+
+<%= form_for @catalog do |c| %>
+
+  <!--Задаем сортовой состав-->
+  <div class="catalog_wine_varieties">
+    <%= render 'catalogs/index_wine_variety' %>
+  </div>
+
+  <!--Задание цены и скидки-->
+  <% @types.each do |type| %>
+    <% if action_name == "new" %>
+      <%= c.label "Цена для "+type.name+" : " %>
+      <%= text_field_tag "price["+type.id.to_s+"]", 0 %>
+      <%= c.label "Скидка: " %>
+      <%= text_field_tag "discount["+type.id.to_s+"]", 0 %>
+    <% else %>
+      <% price_each = @prices.where('type_id = ?', type).first %>
+      <% price_price = (price_each.nil?)? 0 : price_each.price %>
+      <% price_discount = (price_each.nil?)? 0 : price_each.discount %>
+      <%= c.label "Цена для "+type.name+" : " %>
+      <%= text_field_tag "price["+type.id.to_s+"]", price_price %>
+      <%= c.label "Скидка: " %>
+      <%= text_field_tag "discount["+type.id.to_s+"]", price_discount %>
+    <% end %>
+  <% end %>
+  <%= c.label :"Наименование " %><%= c.text_field :name %>
+  <%= c.label :"Наименование eng " %><%= c.text_field :name_eng %>
+  <%= c.label :"Год " %><%= c.text_field :year %>
+  <%= c.label :"Крепкий алкоголь " %><%= c.check_box :hard_liquor %>
+  <%= c.label :"Описание " %><%= c.text_area :description %>
+  <%= c.label :"Описание eng" %><%= c.text_area :description_eng %>
+  <%= c.label :"Крепость " %><%= c.text_field :abv %>
+  <%= c.label :"Объем " %><%= c.text_field :volume %>
+  <%= c.label :"Бутылок в упаковке " %><%= c.text_field :amount %>
+  <%= c.label :"Награды " %><%= c.text_field :honors %>
+  <%= c.label :"Штрих-код " %><%= c.text_field :barcode %>
+  <%= c.label :"Интересное вино " %><%= c.check_box :interesting %>
+  <div class="interesting_wine">
+    <%= c.label :"Интересное вино: background_image " %><%= c.file_field :interesting_background_image %>
+    <%= c.label :"Интересное вино: background_bottle " %><%= c.file_field :interesting_background_bottle %>
+    <%= c.label :"Интересное вино: offers_logo " %><%= c.file_field :interesting_offers_logo %>
+    <%= c.label :"Интересное вино: description_rus" %><%= c.text_area :interesting_description_rus %>
+    <%= c.label :"Интересное вино: description_fr" %><%= c.text_area :interesting_description_fr %>
+    <%= c.label :"Интересное вино: row1" %><%= c.text_area :interesting_row1 %>
+    <%= c.label :"Интересное вино: row2" %><%= c.text_area :interesting_row2 %>
+  </div>
+  <%= c.label :"Фото для каталога" %><%= c.file_field :avatar %>
+  <%= c.label :"Фото для лучшего предложения" %><%= c.file_field :photo_best %>
+  <%= c.label :"Фото оригинальное" %><%= c.file_field :photo_original %>
+  <%= c.label :"Сахар" %><%= c.select :sugar_id, options_from_collection_for_select(@sugars, :id, :name, @catalog.sugar_id), include_blank: true %>
+  <%= c.label :"Производитель" %><%= c.select :manufacturer_id, options_from_collection_for_select(@manufacturers, :id, :name, @catalog.manufacturer_id), include_blank: true %>
+  <%= c.label :"Категория" %><%= c.select :category_id, options_from_collection_for_select(@categories, :id, :name, @catalog.category_id), include_blank: true %>
+  <%= c.label :"Цвет" %><%= c.select :color_id, options_from_collection_for_select(@colors, :id, :name, @catalog.color_id), include_blank: true %>
+  <%= c.label :"Категория поиска" %><%= c.select :search_category_id, options_from_collection_for_select(@search_categories, :id, :name, @catalog.search_category_id), include_blank: true %>
+  <%= c.submit value: "Сохранить" %>
+<% end %>
+
+<script>
+  if ($('#catalog_interesting').prop('checked') == false) {
+    $('.interesting_wine').hide();
+  }
+  $('#catalog_interesting').click(function() {
+    if ($(this).prop('checked')) {
+      $('.interesting_wine').show();
+    } else {
+      $('.interesting_wine').hide();
+    }
+  })
+</script>
